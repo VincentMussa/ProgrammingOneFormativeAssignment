@@ -28,5 +28,26 @@ def menu_list():
 user_choice = menu_list()
 print("You have choosen the option:", user_choice)
 
+#Creating function for each menu option as in the future each option can have multiple entries.
+print(" The following is a list of menu options you are to choose from:")
+def Enter_homework():
+    print("This selection allows you to enter your homework assignments")
+
+def Enter_exam():
+    print("This selection allows you to enter your exam assignments")
+
+def List_assignments():
+    print("This selection allows you to list all your assignments") 
+
+def Filter():
+    print("This selection allows you to filter your assignments by subject, type or month")
+
+def Grade_Summary():
+    print("This selection allows you to show your grade summary")
+
+def Close():
+    print("This selection closes the program")
+
+
 
 
