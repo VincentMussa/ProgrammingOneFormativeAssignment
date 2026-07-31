@@ -25,6 +25,8 @@ def menu_list():
     selection = input("Choose your option from the menu list above:")
     return selection
 #Till here the function is working but needs to be called in order to run it.
+user_choice = menu_list()
+print("You have choosen the option:", user_choice)
 
 
 
