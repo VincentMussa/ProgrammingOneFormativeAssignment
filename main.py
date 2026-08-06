@@ -8,6 +8,10 @@ print("Student Grade Tracking system first step.")
 #assignments like Programming I, Communication for Impact, Projects will be added in the list
 assignments = []
 
+#Crearing a class that will act like a form for assignment entry
+class AssignmentForm:
+    pass
+
 #Creating function for each menu option as in the future each option can have multiple entries.
 def Enter_homework():
     print("This selection allows you to enter your homework assignments")
