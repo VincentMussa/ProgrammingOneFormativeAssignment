@@ -10,7 +10,22 @@ assignments = []
 
 #Crearing a class that will act like a form for assignment entry
 class AssignmentForm:
-    pass
+    #From the the guiding instructions, assignments need to have the subject, title, score, maximum score, assignment due date and assignment type or category
+    # the word _init_ is a constructor that is used to initialize each data in the class
+    # Self helps to pull data from the class
+    def __init__(self, subject, title, marks, max_marks, last_date, assignment_category):
+        self.subject = subject
+        self.title = title
+        self.marks = marks
+        self.max_marks = max_marks
+        self.last_date = last_date
+        self.assignment_category = assignment_category 
+
+#Checking how class works with a programming assignment example
+trial = AssignmentForm("Programming I", "Formative I", 94, 100, "16/08/26", "Self Work")    
+print(trial.subject)  
+print(f"Title: {trial.title}, Marks: {trial.marks}, Max Marks: {trial.max_marks}, Last Date: {trial.last_date}, Assignment Category: {trial.assignment_category}")                     
+print(f"If you submit later than {trial.last_date}, you get zero(0) marks")
 
 #Creating function for each menu option as in the future each option can have multiple entries.
 def Enter_homework():
