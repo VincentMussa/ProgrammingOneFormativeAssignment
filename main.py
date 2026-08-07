@@ -21,11 +21,19 @@ class AssignmentForm:
         self.last_date = last_date
         self.assignment_category = assignment_category 
 
-#Checking how class works with a programming assignment example
-trial = AssignmentForm("Programming I", "Formative I", 94, 100, "16/08/26", "Self Work")    
-print(trial.subject)  
-print(f"Title: {trial.title}, Marks: {trial.marks}, Max Marks: {trial.max_marks}, Last Date: {trial.last_date}, Assignment Category: {trial.assignment_category}")                     
-print(f"If you submit later than {trial.last_date}, you get zero(0) marks")
+#Adding method to class
+#Method is action for class to do
+#First action is to show details of the assignment entered and will use indentation its part of the class
+    def assignment_details(self):
+        print("Subject:", self.subject)
+        print("Title:", self.title)
+        print("Marks:", self.marks)
+        print("Maximum Marks:", self.max_marks)
+        print("Last Date:", self.last_date)
+        print("Assignment Category:", self.assignment_category)
+#Earlier tested the class form details with print statement, now using same example and calling the class details as a function/method
+trial = AssignmentForm("Programming I", "Formative I", 94, 100, "16/06/26", "Self Work")
+trial.assignment_details()
 
 #Creating function for each menu option as in the future each option can have multiple entries.
 def Enter_homework():
