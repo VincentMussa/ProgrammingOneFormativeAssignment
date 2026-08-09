@@ -4,16 +4,12 @@
 
 print("Student Grade Tracking system first step.")
 
-#Creating empty list where later will have assignments stored
-#assignments like Programming I, Communication for Impact, Projects will be added in the list
-assignments = []
-
 #Crearing a class that will act like a form for assignment entry
 class AssignmentForm:
     #From the the guiding instructions, assignments need to have the subject, title, score, maximum score, assignment due date and assignment type or category
-    # the word _init_ is a constructor that is used to initialize each data in the class
+    # the word __init__ is a constructor that is used to initialize each data in the class
     # Self helps to pull data from the class
-    def _init_(self, subject, title, marks, max_marks, last_date, assignment_category):
+    def __init__(self, subject, title, marks, max_marks, last_date, assignment_category):
         self.subject = subject
         self.title = title
         self.marks = marks
@@ -34,17 +30,55 @@ class AssignmentForm:
 
 #Creating class that acts as a manager for all assignment, like a physical folder at school where a teacher keeps all assignments
 class AssignmentManager:
-    def _init_(self):
+    def __init__(self):
         self.assignments = []
 
 #Function/Method for user to add assignment to the list above
-    def add_assignment(self, entry):
-        self.assignments.append(entry)
+    def add_assignment(self, assignment):
+        self.assignments.append(assignment)
 #append is a programing word that helps add items like assignments here in the list
+#after adding assignment another action is to check the assignmnents in the list/folder
+    def list_assignments(self):
+        if len(self.assignments) == 0:
+            print("You have not entered any assignment.")
+        else:
+            for assignment in self.assignments:
+                assignment.assignment_details()
+
+#now the assignment manager has a list for assignments, how to add assignments, can show assignments details
+#adding method to display summary for assignments
+#it is used to show average marks for all subjects
+    def marks_summary(self):
+        if len(self.assignments) == 0:
+            print("You have not entered any assignment.")
+        else:
+            total_percentage = 0
+            for assignment in self.assignments:
+                marks_percentage = (assignment.marks / assignment.max_marks) * 100
+                print(f"{assignment.subject}; {marks_percentage}%")
+                total_percentage = total_percentage + marks_percentage
+            average_percentage = total_percentage / len(self.assignments)
+            print(f"The overall average percentage is {average_percentage}%")
+
+#The lis created earlier is now a folder for the assignments and the manager
+#All the menu options below will add assignments into the folder or check available assignments in the folder
+assignment_manager = AssignmentManager()
 
 #Creating function for each menu option as in the future each option can have multiple entries.
 def Enter_homework():
-    print("This selection allows you to enter your homework assignments")
+    print("This selection allows you to enter your homework details")
+#The homework has details to enter using input function from user
+    subject = input("Enter subject: ")
+    title_of_homework = input("Enter title of homework: ")
+#float makes the text as input to numbers that can have decimals
+    marks = float(input("Enter your marks: "))
+    marks_max=float(input("Enter highest marks for homework: "))
+    last_date = input("Enter last date for homework submission: ")
+#creating assignment that enters one real homework from user
+    assignment = AssignmentForm(subject, title_of_homework, marks, marks_max, last_date, "Homework")
+#saving the homework to the assignment manager
+    assignment_manager.add_assignment(assignment)
+    print("You have added your homework assignment.")
 
 def Enter_exam():
     print("This selection allows you to enter your exam assignments")
