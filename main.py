@@ -13,7 +13,7 @@ class AssignmentForm:
     #From the the guiding instructions, assignments need to have the subject, title, score, maximum score, assignment due date and assignment type or category
     # the word _init_ is a constructor that is used to initialize each data in the class
     # Self helps to pull data from the class
-    def __init__(self, subject, title, marks, max_marks, last_date, assignment_category):
+    def _init_(self, subject, title, marks, max_marks, last_date, assignment_category):
         self.subject = subject
         self.title = title
         self.marks = marks
@@ -31,9 +31,16 @@ class AssignmentForm:
         print("Maximum Marks:", self.max_marks)
         print("Last Date:", self.last_date)
         print("Assignment Category:", self.assignment_category)
-#Earlier tested the class form details with print statement, now using same example and calling the class details as a function/method
-trial = AssignmentForm("Programming I", "Formative I", 94, 100, "16/06/26", "Self Work")
-trial.assignment_details()
+
+#Creating class that acts as a manager for all assignment, like a physical folder at school where a teacher keeps all assignments
+class AssignmentManager:
+    def _init_(self):
+        self.assignments = []
+
+#Function/Method for user to add assignment to the list above
+    def add_assignment(self, entry):
+        self.assignments.append(entry)
+#append is a programing word that helps add items like assignments here in the list
 
 #Creating function for each menu option as in the future each option can have multiple entries.
 def Enter_homework():
