@@ -55,7 +55,7 @@ class AssignmentManager:
             total_percentage = 0
             for assignment in self.assignments:
                 marks_percentage = (assignment.marks / assignment.max_marks) * 100
-                print(f"{assignment.subject}; {marks_percentage}%")
+                print(f"Average for {assignment.subject}: {marks_percentage}%")
                 total_percentage = total_percentage + marks_percentage
             average_percentage = total_percentage / len(self.assignments)
             print(f"The overall average percentage is {average_percentage}%")
@@ -72,25 +72,38 @@ def Enter_homework():
     title_of_homework = input("Enter title of homework: ")
 #float makes the text as input to numbers that can have decimals
     marks = float(input("Enter your marks: "))
-    marks_max=float(input("Enter highest marks for homework: "))
+    max_marks = float(input("Enter highest marks for homework: "))
     last_date = input("Enter last date for homework submission: ")
 #creating assignment that enters one real homework from user
-    assignment = AssignmentForm(subject, title_of_homework, marks, marks_max, last_date, "Homework")
+    assignment = AssignmentForm(subject, title_of_homework, marks, max_marks, last_date, "Homework")
 #saving the homework to the assignment manager
     assignment_manager.add_assignment(assignment)
-    print("You have added your homework assignment.")
+    print("You have entered your homework assignment.")
 
 def Enter_exam():
-    print("This selection allows you to enter your exam assignments")
+    print("This selection allows you to enter your exam details")
+#Just like the homework, exam has several details to be entere by user
+    subject = input("Ënter subject: ")
+    title_of_exam = input("Ënter title of exam: ")
+    marks = float(input("Enter  your marks: "))
+    max_marks = float (input("Enter highest marks for this assignment: "))
+    last_date = input("Enter the exam due date: ")
+#creating assignment for the manager that enters exam details from the user
+    assignment = AssignmentForm(subject, title_of_exam, marks, max_marks, last_date, "Exam")
+#saving exam to assignment manager
+    assignment_manager.add_assignment(assignment)
+    print("You have entered your exam details")
 
 def List_assignments():
     print("This selection displays all your assignments") 
+    assignment_manager.list_assignments()
 
 def Filter():
-    print("This selection allows you to filter your assignments by subject, type or month")
+    print("This selection allows you to filter your assignments by subject, type or month") 
 
-def Grade_summary():
+def Marks_summary():
     print("This selection allows you to see your grade summary")
+    assignment_manager.marks_summary()
 
 def Close():
     print("This selection closes the program")
@@ -129,7 +142,7 @@ while keep_running:
         Filter()
 
     elif user_choice == "5":
-        Grade_summary()
+        Marks_summary()
 
     elif user_choice == "0":
         Close()
