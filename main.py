@@ -4,7 +4,7 @@
 
 print("Student Grade Tracking system first step.")
 
-#Crearing a class that will act like a form for assignment entry
+#Creating a class that will act like a form for assignment entry
 class AssignmentForm:
     #From the the guiding instructions, assignments need to have the subject, title, score, maximum score, assignment due date and assignment type or category
     # the word __init__ is a constructor that is used to initialize each data in the class
@@ -27,6 +27,18 @@ class AssignmentForm:
         print("Maximum Marks:", self.max_marks)
         print("Last Date:", self.last_date)
         print("Assignment Category:", self.assignment_category)
+
+#Now homework is coming from the AssignmentForm so INHERITS everything assignment form has
+class Homework(AssignmentForm):
+    #The components of the homework
+    def __init__(self, subject, title, marks, max_marks, last_date):
+        super().__init__(subject, title, marks, max_marks, last_date, "Homework")
+#super() is used to send the components up to AsignmentForms __init__
+
+#The exam also INHERITS properties from the assignmnet form
+class Exam(AssignmentForm):
+    def __init__(self, subject, title, marks, max_marks, last_date):
+        super().__init__(subject, title, marks, max_marks, last_date, "Exam")
 
 #Creating class that acts as a manager for all assignment, like a physical folder at school where a teacher keeps all assignments
 class AssignmentManager:
@@ -55,7 +67,7 @@ class AssignmentManager:
             total_percentage = 0
             for assignment in self.assignments:
                 marks_percentage = (assignment.marks / assignment.max_marks) * 100
-                print(f"Average for {assignment.subject}: {marks_percentage}%")
+                print(f"Average for {assignment.subject} is {marks_percentage}%")
                 total_percentage = total_percentage + marks_percentage
             average_percentage = total_percentage / len(self.assignments)
             print(f"The overall average percentage is {average_percentage}%")
@@ -75,7 +87,8 @@ def Enter_homework():
     max_marks = float(input("Enter highest marks for homework: "))
     last_date = input("Enter last date for homework submission: ")
 #creating assignment that enters one real homework from user
-    assignment = AssignmentForm(subject, title_of_homework, marks, max_marks, last_date, "Homework")
+#Afte creating the homework sublass in AssignmentForm so updating it to directly enter data
+    assignment = Homework(subject, title_of_homework, marks, max_marks, last_date)
 #saving the homework to the assignment manager
     assignment_manager.add_assignment(assignment)
     print("You have entered your homework assignment.")
@@ -89,7 +102,8 @@ def Enter_exam():
     max_marks = float (input("Enter highest marks for this assignment: "))
     last_date = input("Enter the exam due date: ")
 #creating assignment for the manager that enters exam details from the user
-    assignment = AssignmentForm(subject, title_of_exam, marks, max_marks, last_date, "Exam")
+#Also exam has the subclass in AssignmentForm that enters direct details no need to type exam again its already in the subclass
+    assignment = Exam(subject, title_of_exam, marks, max_marks, last_date)
 #saving exam to assignment manager
     assignment_manager.add_assignment(assignment)
     print("You have entered your exam details")
