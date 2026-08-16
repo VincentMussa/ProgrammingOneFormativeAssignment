@@ -22,9 +22,33 @@ def menu_list():
     print("4-Filter by subject, type or month")
     print("5-Show grade summary")
     print("0-Close")
-    selection = input("Choose your option from the menu list above:")
+    selection = input("Choose your option from the menu list above: ")
     return selection
 #Till here the function is working but needs to be called in order to run it.
+user_selection = menu_list()
+print("You have selected option:", user_selection)
+
+#Creating function for each menu option as in the future each option can have multiple entries.
+print(" The following is a list of menu options you are to choose from:")
+def Enter_homework():
+    print("This selection allows you to enter your homework assignments")
+
+def Enter_exam():
+    print("This selection allows you to enter your exam assignments")
+
+def List_assignments():
+    print("This selection allows you to list all your assignments") 
+
+def Filter():
+    print("This selection allows you to filter your assignments by subject, type or month")
+
+def Grade_Summary():
+    print("This selection allows you to show your grade summary")
+
+def Close():
+    print("This selection closes the program")
+    
+
 
 
 
