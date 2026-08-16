@@ -72,6 +72,36 @@ class AssignmentManager:
             average_percentage = total_percentage / len(self.assignments)
             print(f"The overall average percentage is {average_percentage}%")
 
+#In the assignment manager, there is a need for a filter to choose assignments according to user want
+#Using filter function to work on that
+    def filter_assignments(self, search_by, search_word):   #search_by is for we are seaching by subject, type, or month AND search_word is for looking for a specific name exactly
+        if len(self.assignments)== 0:
+            print("You have not entered any assignment.")
+            return
+#To here it will not filter anything if no assignment entered
+#Now if there is assignment entered it will filter if condition is true
+        def matches(assignment):
+            if search_by == "subject":
+                return assignment.subject == search_word
+            elif search_by == "type":
+                return assignment.assignment_category == search_word
+            elif search_by == "month":
+                return search_word in assignment.last_date
+            else:
+                return False
+#With this else/if function the conditions are set that if true it needs to bring a list so we call the function
+        list_found = list(filter(matches, self.assignments))
+
+#After calling the function now what is needed to be seen if the assignment details for the ones filtered
+        if len(list_found) == 0:
+            print("This search has no assignments")
+
+        else:
+            for assignment in list_found:
+                assignment.assignment_details()
+
+        
+
 #The lis created earlier is now a folder for the assignments and the manager
 #All the menu options below will add assignments into the folder or check available assignments in the folder
 assignment_manager = AssignmentManager()
@@ -85,9 +115,14 @@ def Enter_homework():
 #float makes the text as input to numbers that can have decimals
     marks = float(input("Enter your marks: "))
     max_marks = float(input("Enter highest marks for homework: "))
+#Creting condition for user not to enter marks above the highest marks of the homework
+#Using return so as if user enters marks above the highest maeks of the homework
+    if marks > max_marks:
+        print("You have entered marks. You can't have marks above the highest score")
+        return
     last_date = input("Enter last date for homework submission: ")
 #creating assignment that enters one real homework from user
-#Afte creating the homework sublass in AssignmentForm so updating it to directly enter data
+#After creating the homework sublass in AssignmentForm so updating it to directly enter data
     assignment = Homework(subject, title_of_homework, marks, max_marks, last_date)
 #saving the homework to the assignment manager
     assignment_manager.add_assignment(assignment)
@@ -96,10 +131,15 @@ def Enter_homework():
 def Enter_exam():
     print("This selection allows you to enter your exam details")
 #Just like the homework, exam has several details to be entere by user
-    subject = input("Ënter subject: ")
+    subject = input("Enter subject: ")
     title_of_exam = input("Ënter title of exam: ")
     marks = float(input("Enter  your marks: "))
     max_marks = float (input("Enter highest marks for this assignment: "))
+#Creating condition for user not to enter marks avove the highest marks of the exam
+#Using return so as if user puts marks above highest marks it stops there
+    if marks > max_marks:
+        print("You have entered wrong marks. You can't have marks above the highest score")
+        return
     last_date = input("Enter the exam due date: ")
 #creating assignment for the manager that enters exam details from the user
 #Also exam has the subclass in AssignmentForm that enters direct details no need to type exam again its already in the subclass
@@ -112,8 +152,13 @@ def List_assignments():
     print("This selection displays all your assignments") 
     assignment_manager.list_assignments()
 
+#Updating the Filter for assignments to allow user input what they what to see
 def Filter():
     print("This selection allows you to filter your assignments by subject, type or month") 
+    search_by = input("Which category are you searching for?, subject/type or month...")
+    search_word = input ("Enter the word you want to look for: ")
+    assignment_manager.filter_assignments(search_by, search_word)
+    
 
 def Marks_summary():
     print("This selection allows you to see your grade summary")
