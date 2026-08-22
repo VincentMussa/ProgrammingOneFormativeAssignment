@@ -120,7 +120,7 @@ def Enter_homework():
     if marks > max_marks:
         print("You have entered marks. You can't have marks above the highest score")
         return
-    last_date = input("Enter last date for homework submission: ")
+    last_date = input("Enter last date for homework submission (DD/MM/26): ")
 #creating assignment that enters one real homework from user
 #After creating the homework sublass in AssignmentForm so updating it to directly enter data
     assignment = Homework(subject, title_of_homework, marks, max_marks, last_date)
@@ -140,7 +140,7 @@ def Enter_exam():
     if marks > max_marks:
         print("You have entered wrong marks. You can't have marks above the highest score")
         return
-    last_date = input("Enter the exam due date: ")
+    last_date = input("Enter the exam due date (DD/MM/26): ")
 #creating assignment for the manager that enters exam details from the user
 #Also exam has the subclass in AssignmentForm that enters direct details no need to type exam again its already in the subclass
     assignment = Exam(subject, title_of_exam, marks, max_marks, last_date)
